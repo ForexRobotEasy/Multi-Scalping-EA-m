@@ -1,0 +1,76 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                               Multi Scalping EA m|
+//|                    https://www.forexroboteasy.com                   |
+//|                               Forex Robot Easy Team                 |
+//+------------------------------------------------------------------+
+
+//--- input parameters
+input double Risk = 2.0; // risk level in percentage
+
+//--- expert initialization function
+int OnInit()
+{
+    //--- check if the EA is running on the MT4 platform
+    if (TerminalInfoString(TERMINAL_NAME) != 'MetaTrader 4')
+    {
+        Print('This expert advisor can only run on the MetaTrader 4 platform.');
+        return INIT_FAILED;
+    }
+    
+    //--- check if the EA is running on a PC or VPS
+    if (!IsPlatformPC() && !IsPlatformVPS())
+    {
+        Print('This expert advisor requires a running PC or Virtual Private Server (VPS).');
+        return INIT_FAILED;
+    }
+    
+    //--- initialize trading algorithm
+    InitializeAlgorithm();
+    
+    return INIT_SUCCEEDED;
+}
+
+//--- expert deinitialization function
+void OnDeinit(const int reason)
+{
+    //--- deinitialize trading algorithm
+    DeinitializeAlgorithm();
+}
+
+//--- expert start function
+void OnTick()
+{
+    //--- perform trading activities
+    PerformTrading();
+}
+
+//--- initialize trading algorithm
+void InitializeAlgorithm()
+{
+    //--- add necessary code here to initialize the trading algorithm
+}
+
+//--- deinitialize trading algorithm
+void DeinitializeAlgorithm()
+{
+    //--- add necessary code here to deinitialize the trading algorithm
+}
+
+//--- perform trading activities
+void PerformTrading()
+{
+    //--- add necessary code here to perform trading activities
+}
+
+//--- check if the platform is PC
+bool IsPlatformPC()
+{
+    return StringFind(PlatformInfoString(PLATFORM_NAME), 'PC') >= 0;
+}
+
+//--- check if the platform is VPS
+bool IsPlatformVPS()
+{
+    return StringFind(PlatformInfoString(PLATFORM_NAME), 'VPS') >= 0;
+}
